@@ -4,11 +4,11 @@ class dataPost {
     "Content-Type": "application/json",
   };
   body = "";
-  status = "show"
   constructor(method, task) {
     this.method = method;
     this.body = JSON.stringify({
       task,
+      status : 'show'
     });
     
   }
