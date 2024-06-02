@@ -19,11 +19,11 @@ let request = async () => {
     let response = await fetch(linkData);
     let data = await response.json();
     console.log(data);
-    // data.forEach(object => {
-    //   let text = document.createElement('p')
-    //   text.innerHTML = object.task
-
-    // });
+    data.forEach(object => {
+      let text = document.createElement('p')
+      text.innerHTML = object.task
+      document.getElementById('inProgres').appendChild(text)
+    });
   } catch (error) {
     console.log(error);
   }
@@ -35,6 +35,7 @@ test.addEventListener("click", () => {
 formTask.addEventListener('submit', (m)=>{
 m.preventDefault()
 let Task = new dataPost_Put('post', inputTask.value)
-request(Task)
+requestPost(Task)
 })
 //Cargar contenido 
+request()
