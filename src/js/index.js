@@ -12,7 +12,6 @@ let requestPost = async (dataObject) => {
     console.log(error);
   }
 };
-
 let request = async () => {
   try {
     let response = await fetch(linkData);
@@ -49,20 +48,24 @@ formTask.addEventListener("submit", (m) => {
 let showContent = (objectData) => {
   objectData.forEach((object) => {
     if (object.status === "show") {
+      let icon = document.createElement("div")
       let checkBox = document.createElement("input");
       let text = document.createElement("p");
       let div = document.createElement("div");
-      let divBtn = document.createElement("button");
+      let divBtn = document.createElement("div");
       let divTask = document.createElement("div");
       checkBox.type = "checkbox";
       text.innerHTML = object.task;
       divBtn.id = object.id;
       div.appendChild(checkBox);
       div.appendChild(text);
+      divBtn.appendChild(icon)
+      icon.innerHTML = '<i class="fa-solid fa-trash fa-sm" style="color: #ffffff;"></i>'
+      icon.classList.add("icon")
+      checkBox.classList.add("checkBox");
       div.classList.add("taskDivs");
       divTask.classList.add("tasks");
       divBtn.classList.add("divBtn");
-      divBtn.innerHTML = "Eliminar";
       divTask.appendChild(div);
       divTask.appendChild(divBtn);
       document.getElementById("inProgres").appendChild(divTask);
@@ -71,7 +74,7 @@ let showContent = (objectData) => {
           if (task.id == divBtn.id) {
             let changeStatus = new DataPut("put", "hide");
             putRequest(divBtn.id, changeStatus);
-            window.location.reload()
+            window.location.reload();
           }
         });
       });
@@ -81,3 +84,25 @@ let showContent = (objectData) => {
 };
 
 
+
+// let fetch = async () =>{
+// try {
+// let response = await fetch(linkData) 
+// let datos = await response.json()
+// console.log(datos);
+
+// } catch (error) {
+//   console.log(error);
+// }
+// }
+
+// let objeto = {
+// method:'post',
+// headers:{
+//   'Content-Type': 'application/json'
+// },
+// body:JSON.stringify({
+//   tarea: 'hice la tarea'
+// })
+ 
+// } 
