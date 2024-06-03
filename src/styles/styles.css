@@ -4,11 +4,51 @@
 #inProgres {
   display: grid;
   grid-template-columns: auto;
+  margin-top: 60px;
   
-  border: solid 1px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  gap: 20px;
 }
 
+
+
+#taskForm{
+display: flex;
+justify-content: center;
+gap: 80px;
+margin-left: 30%;
+margin-right: 30%;
+margin-bottom: 20px;
+position: fixed;
+
+}
+
+#formInput{
+  border: solid 2px rgb(0, 110, 255);
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(0, 110, 255);
+  
+}
+#formInput:focus {
+  outline: none;
+}
+#formInput::placeholder {
+  color: white;
+}
+
+#submit{
+padding-left: 20px;
+padding-right: 20px;
+font-size: 30px;
+background-color: rgb(0, 110, 255);
+border: solid 2px rgb(0, 110, 255);
+color: white;
+border-radius: 5px;
+}
 .tareas {
   display: grid;
   grid-template-columns: auto 40% auto;
@@ -38,12 +78,13 @@
 
 .tasks {
   
-  border : solid 1px rgba(0, 0, 0, 0.2);
+  border: solid 1px rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: space-between;
   
+  border-radius: 5px;
 }
 
-.checkBox {
-  margin-left: 10px;
+.checkBox[type="checkbox"] {
+  width: 100px;
 }
