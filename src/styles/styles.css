@@ -2,28 +2,35 @@
   font-family: "Poppins", sans-serif;
 }
 #inProgres {
-  display: grid;
-  grid-template-columns: auto;
   margin-top: 60px;
-  
-  overflow: hidden;
-  gap: 20px;
+  border: solid 1px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  height: 500px;
+  overflow: auto;
+  border-radius: 5px;
 }
 
 
+#taskForm {
+  display: flex;
+  justify-content: center;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 20px;
+  position: fixed;
+  background-color: coral;
+}
 
-#taskForm{
+#countdown{
 display: flex;
 justify-content: center;
-gap: 80px;
-margin-left: 30%;
-margin-right: 30%;
-margin-bottom: 20px;
-position: fixed;
+align-items: center;
+background-color: lightcyan;
+padding: 10px;
 
 }
 
-#formInput{
+#formInput {
   border: solid 2px rgb(0, 110, 255);
   width: 250px;
   height: 40px;
@@ -31,7 +38,6 @@ position: fixed;
   font-size: 20px;
   color: white;
   background-color: rgb(0, 110, 255);
-  
 }
 #formInput:focus {
   outline: none;
@@ -40,18 +46,18 @@ position: fixed;
   color: white;
 }
 
-#submit{
-padding-left: 20px;
-padding-right: 20px;
-font-size: 30px;
-background-color: rgb(0, 110, 255);
-border: solid 2px rgb(0, 110, 255);
-color: white;
-border-radius: 5px;
+#submit {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 30px;
+  background-color: rgb(0, 110, 255);
+  border: solid 2px rgb(0, 110, 255);
+  color: white;
+  border-radius: 5px;
 }
 .tareas {
   display: grid;
-  grid-template-columns: auto 40% auto;
+  grid-template-columns: auto 60% auto;
 }
 
 .taskDivs {
@@ -66,7 +72,7 @@ border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto 10px auto 0;
+  margin: auto 20px auto 0;
   background-color: #ff4d6d;
   width: 50px;
   height: 50px;
@@ -76,15 +82,25 @@ border-radius: 5px;
   height: 30px;
 }
 
+.divBtn:hover {
+  box-shadow: 1px 0px 6px -1px rgba(0, 0, 0, 0.53);
+}
+
 .tasks {
   
+  margin: 10px;
   border: solid 1px rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: space-between;
-  
+
   border-radius: 5px;
 }
 
-.checkBox[type="checkbox"] {
-  width: 100px;
+.checkBox {
+  width: 25px;
+  height: 25px;
+  margin: 10px;
+  border: solid 1px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  background-color: white;
 }
