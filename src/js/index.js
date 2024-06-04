@@ -1,8 +1,9 @@
 //Imports
 import { dataPost, DataPut, DataCheck } from "../js/class_data";
-import { formTask, inputTask, countShow } from "../js/variables";
+import { formTask, inputTask, countShow, showTasksDiv, } from "../js/variables";
 //fetch request
 let linkData = "http://localhost:3000/api/task/";
+// post
 let requestPost = async (dataObject) => {
   try {
     let response = await fetch(linkData, dataObject);
@@ -36,8 +37,11 @@ let putRequest = async (thisId, deleteThis) => {
 //hace post a la base de datos con el valor del input, {task: inputTask.value}
 formTask.addEventListener("submit", (m) => {
   m.preventDefault();
-  if (inputTask.value != "") {
-    let Task = new dataPost("post", inputTask.value);
+  let espacios = inputTask.value
+  let filtrado = espacios.trim()
+  
+  if (filtrado != "") {
+    let Task = new dataPost("post", filtrado);
     requestPost(Task);
     window.location.reload();
   } else {
@@ -47,7 +51,10 @@ formTask.addEventListener("submit", (m) => {
 
 let showContent = (objectData) => {
   let contador = 0;
+  let compara = 0;
+
   objectData.forEach((object) => {
+    compara++;
     let icon = document.createElement("div");
     let checkBox = document.createElement("div");
     let text = document.createElement("p");
@@ -56,14 +63,17 @@ let showContent = (objectData) => {
     let divTask = document.createElement("div");
     text.innerHTML = object.task;
     divBtn.id = object.id;
-    checkBox.id = object.id;
 
+    checkBox.id = object.id;
     if (object.status == "checked") {
-      contador++
-      countShow.innerHTML = contador
-      checkBox.style.backgroundColor = "blue";
+      contador++;
+      countShow.innerHTML = "Tareas completadas: " + contador;
+      checkBox.style.backgroundColor = "rgb(0, 110, 255)";
+      checkBox.innerHTML =
+        '<i class="fa-solid fa-check fa-sm" style="color: #ffffff;"></i>';
+      checkBox.style.border = "none";
+      divTask.style.opacity = '0.3'
     }
-    
     div.appendChild(checkBox);
     div.appendChild(text);
     divBtn.appendChild(icon);
@@ -82,6 +92,7 @@ let showContent = (objectData) => {
     divBtn.addEventListener("click", () => {
       objectData.forEach((task) => {
         if (task.id == divBtn.id) {
+          console.log(divBtn.id);
           let changeStatus = new DataPut("delete");
           putRequest(divBtn.id, changeStatus);
           window.location.reload();
@@ -92,9 +103,10 @@ let showContent = (objectData) => {
     checkBox.addEventListener("click", () => {
       objectData.forEach((task) => {
         if (task.id == checkBox.id) {
-          if (checkBox.style.backgroundColor != "blue") {
-            checkBox.style.backgroundColor = "blue";
+          if (checkBox.style.backgroundColor != "rgb(0, 110, 255)") {
+            checkBox.style.backgroundColor = "rgb(0, 110, 255)";
             let checked = new DataCheck("put", "checked");
+
             putRequest(checkBox.id, checked);
             window.location.reload();
           } else {
@@ -102,6 +114,7 @@ let showContent = (objectData) => {
               checkBox.style.backgroundColor = "white";
               let unChecked = new DataCheck("put", "unChecked");
               putRequest(checkBox.id, unChecked);
+              checkBox.innerHTML = "";
               window.location.reload();
             }
           }
@@ -111,30 +124,11 @@ let showContent = (objectData) => {
 
     //text event
   });
+  if (compara === 0) {
+    showTasksDiv.innerHTML = "No hay tareas";
+    showTasksDiv.style.display = "flex";
+    showTasksDiv.style.justifyContent = "center";
+    showTasksDiv.style.alignItems = "center";
+    showTasksDiv.style.fontSize = "40px";
+  }
 };
-
-// let checkFunction = ()=>{
-
-// }
-
-// let fetch = async () =>{
-// try {
-// let response = await fetch(linkData)
-// let datos = await response.json()
-// console.log(datos);
-
-// } catch (error) {
-//   console.log(error);
-// }
-// }
-
-// let objeto = {
-// method:'post',
-// headers:{
-//   'Content-Type': 'application/json'
-// },
-// body:JSON.stringify({
-//   tarea: 'hice la tarea'
-// })
-
-// }
