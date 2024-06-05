@@ -10,22 +10,37 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://kit.fontawesome.com/4aa9dc4935.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/4aa9dc4935.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body id="body" class="body">
-    <h1>Lista de tareas</h1>
-
     <form id="taskForm">
-      <input type="text" name="" id="formInput" />
-      <input type="submit" />
+      <input
+        type="text"
+        name=""
+        id="formInput"
+        placeholder="Agrega tus tareas"
+      />
+      <input type="submit" id="submit" value="+" />
+      <div id="countdown">Tareas completadas: 0</div>
     </form>
+
     <div class="tareas">
       <div id="relleno"></div>
       <div id="inProgres"></div>
       <div id="relleno"></div>
     </div>
-	
+
+    <dialog id="editTask" >
+      <form action="" class="editForm" >
+        <input type="text" id="edited">
+        <input type="submit" />
+      </form>
+    </dialog>
+    
 
     <script src="/src/js/index.js" type="module"></script>
   </body>

@@ -8,13 +8,22 @@ class dataPost {
     this.method = method;
     this.body = JSON.stringify({
       task,
-      status : 'show'
+      status: "show",
     });
-    
   }
-
 }
-class DataPut  {
+class DataPut {
+  method = "";
+  headers = {
+    "Content-Type": "application/json",
+  };
+
+  constructor(method) {
+    this.method = method;
+  }
+}
+
+class DataCheck {
   method = "";
   headers = {
     "Content-Type": "application/json",
@@ -25,7 +34,19 @@ class DataPut  {
     this.body = JSON.stringify({
       status,
     });
-    
   }
 }
-export { dataPost, DataPut };
+
+class dataChange {
+  method = "put";
+  headers = {
+    "Content-Type": "application/json",
+  };
+  body = "";
+  constructor(task) {
+    this.body = JSON.stringify({
+      task,
+    });
+  }
+}
+export { dataPost, DataPut, DataCheck, dataChange };
