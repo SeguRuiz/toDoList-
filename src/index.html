@@ -17,18 +17,29 @@
   </head>
 
   <body id="body" class="body">
-    
-      <form id="taskForm">
-        <input type="text" name="" id="formInput" placeholder="Agrega tus tareas" />
-        <input type="submit"  id="submit" value="+">
-        <div id="countdown">Tareas completadas: 0</div>
-      </form>
-    
+    <form id="taskForm">
+      <input
+        type="text"
+        name=""
+        id="formInput"
+        placeholder="Agrega tus tareas"
+      />
+      <input type="submit" id="submit" value="+" />
+      <div id="countdown">Tareas completadas: 0</div>
+    </form>
+
     <div class="tareas">
       <div id="relleno"></div>
       <div id="inProgres"></div>
       <div id="relleno"></div>
     </div>
+
+    <dialog id="editTask" >
+      <form action="" class="editForm" >
+        <input type="text" id="edited">
+        <input type="submit" />
+      </form>
+    </dialog>
     
 
     <script src="/src/js/index.js" type="module"></script>

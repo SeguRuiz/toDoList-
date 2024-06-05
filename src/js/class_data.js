@@ -36,4 +36,17 @@ class DataCheck {
     });
   }
 }
-export { dataPost, DataPut, DataCheck };
+
+class dataChange {
+  method = "put";
+  headers = {
+    "Content-Type": "application/json",
+  };
+  body = "";
+  constructor(task) {
+    this.body = JSON.stringify({
+      task,
+    });
+  }
+}
+export { dataPost, DataPut, DataCheck, dataChange };

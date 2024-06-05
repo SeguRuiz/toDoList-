@@ -11,5 +11,10 @@ let contador2 = 0
 let countShow = document.getElementById("countdown");
 //checkboxes
 let checkboxes = []
+//Modal edit 
+let modal = document.getElementById('editTask')
+let formEdit = document.querySelector('.editForm')
+let editInput = document.getElementById('edited')
 
-export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2 };
+export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2, modal, formEdit
+, editInput };

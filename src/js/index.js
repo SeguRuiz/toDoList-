@@ -1,6 +1,6 @@
 //Imports
-import { dataPost, DataPut, DataCheck } from "../js/class_data";
-import { formTask, inputTask, countShow, showTasksDiv, } from "../js/variables";
+import { dataPost, DataPut, DataCheck, dataChange } from "../js/class_data";
+import { formTask, inputTask, countShow, showTasksDiv, modal, formEdit, editInput } from "../js/variables";
 //fetch request
 let linkData = "http://localhost:3000/api/task/";
 // post
@@ -45,7 +45,7 @@ formTask.addEventListener("submit", (m) => {
     requestPost(Task);
     window.location.reload();
   } else {
-    inputTask.placeholder = "Alguna cosa pendiente?";
+    inputTask.placeholder = "Ingrese el texto";
   }
 });
 
@@ -55,6 +55,7 @@ let showContent = (objectData) => {
 
   objectData.forEach((object) => {
     compara++;
+    let editIcon = document.createElement("div")
     let icon = document.createElement("div");
     let checkBox = document.createElement("div");
     let text = document.createElement("p");
@@ -63,8 +64,8 @@ let showContent = (objectData) => {
     let divTask = document.createElement("div");
     text.innerHTML = object.task;
     divBtn.id = object.id;
-
     checkBox.id = object.id;
+    editIcon.id = object.id
     if (object.status == "checked") {
       contador++;
       countShow.innerHTML = "Tareas completadas: " + contador;
@@ -76,6 +77,7 @@ let showContent = (objectData) => {
     }
     div.appendChild(checkBox);
     div.appendChild(text);
+    div.appendChild(editIcon)
     divBtn.appendChild(icon);
     icon.innerHTML =
       '<i class="fa-solid fa-trash fa-sm" style="color: #ffffff;"></i>';
@@ -84,6 +86,7 @@ let showContent = (objectData) => {
     div.classList.add("taskDivs");
     divTask.classList.add("tasks");
     divBtn.classList.add("divBtn");
+    editIcon.classList.add("editTask")
     divTask.appendChild(div);
     divTask.appendChild(divBtn);
     document.getElementById("inProgres").appendChild(divTask);
@@ -121,7 +124,13 @@ let showContent = (objectData) => {
         }
       });
     });
+    ///////////////////////////////////////////////
+    editIcon.addEventListener('click', ()=>{
+      modal.showModal()
+      editFormFunction(editIcon.id)
+    })
 
+    
     //text event
   });
   if (compara === 0) {
@@ -132,3 +141,31 @@ let showContent = (objectData) => {
     showTasksDiv.style.fontSize = "40px";
   }
 };
+
+
+
+///////////////////////////////////////////////////////////
+let editFormFunction = (id)=>{
+formEdit.addEventListener('submit', (m)=>{
+m.preventDefault()
+let espacios = editInput.value
+  let filtrado = espacios.trim()
+  
+  if (filtrado != "") {
+    let updatedTask = new dataChange(filtrado);
+    putRequest(id, updatedTask);
+    window.location.reload();
+  } else {
+    editInput.placeholder = "Ingrese el texto";
+  }
+})
+}
+
+
+
+
+
+
+
+
+
