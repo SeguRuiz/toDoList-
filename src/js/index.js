@@ -1,6 +1,6 @@
 //Imports
 import { dataPost, DataPut, DataCheck, dataChange } from "../js/class_data";
-import { formTask, inputTask, countShow, showTasksDiv, modal, formEdit, editInput } from "../js/variables";
+import { formTask, inputTask, countShow, showTasksDiv, modal, formEdit, editInput, } from "../js/variables";
 //fetch request
 let linkData = "http://localhost:3000/api/task/";
 // post
@@ -66,6 +66,7 @@ let showContent = (objectData) => {
     divBtn.id = object.id;
     checkBox.id = object.id;
     editIcon.id = object.id
+    
     if (object.status == "checked") {
       contador++;
       countShow.innerHTML = "Tareas completadas: " + contador;
@@ -81,6 +82,7 @@ let showContent = (objectData) => {
     divBtn.appendChild(icon);
     icon.innerHTML =
       '<i class="fa-solid fa-trash fa-sm" style="color: #ffffff;"></i>';
+    editIcon.innerHTML = '<i class="fa-solid fa-pen-to-square" style="color: #006eff;"></i>' 
     icon.classList.add("icon");
     checkBox.classList.add("checkBox");
     div.classList.add("taskDivs");
@@ -128,6 +130,7 @@ let showContent = (objectData) => {
     editIcon.addEventListener('click', ()=>{
       modal.showModal()
       editFormFunction(editIcon.id)
+      test1(text)
     })
 
     
@@ -161,6 +164,12 @@ let espacios = editInput.value
 })
 }
 
+let test1 = (text)=>{
+editInput.addEventListener('input', (o)=>{
+  let s = o.target.value
+  text.innerText = s
+})
+}
 
 
 
