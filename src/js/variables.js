@@ -15,6 +15,13 @@ let checkboxes = []
 let modal = document.getElementById('editTask')
 let formEdit = document.querySelector('.editForm')
 let editInput = document.getElementById('edited')
+//modal search
+let searchbtn = document.querySelector('.searchActive')
+let searchModal = document.getElementById('editSearch')
+let searchInput = document.getElementById('Search')
+let searchForm = document.getElementById('searchForm')
+///////
+let tareas = []
 
 export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2, modal, formEdit
-, editInput };
+, editInput, searchModal, searchbtn, tareas, searchInput, searchForm };

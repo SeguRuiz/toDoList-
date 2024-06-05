@@ -1,6 +1,6 @@
 //Imports
 import { dataPost, DataPut, DataCheck, dataChange } from "../js/class_data";
-import { formTask, inputTask, countShow, showTasksDiv, modal, formEdit, editInput, } from "../js/variables";
+import { formTask, inputTask, countShow, showTasksDiv, modal, formEdit, editInput, searchModal, searchbtn, tareas, searchInput, searchForm} from "../js/variables";
 //fetch request
 let linkData = "http://localhost:3000/api/task/";
 // post
@@ -50,6 +50,7 @@ formTask.addEventListener("submit", (m) => {
 });
 
 let showContent = (objectData) => {
+  
   let contador = 0;
   let compara = 0;
 
@@ -66,7 +67,8 @@ let showContent = (objectData) => {
     divBtn.id = object.id;
     checkBox.id = object.id;
     editIcon.id = object.id
-    
+    divTask.id = text.innerHTML
+    tareas.push(text)
     if (object.status == "checked") {
       contador++;
       countShow.innerHTML = "Tareas completadas: " + contador;
@@ -133,7 +135,7 @@ let showContent = (objectData) => {
       test1(text)
     })
 
-    
+    searchThis(tareas, divTask, searchModal)
     //text event
   });
   if (compara === 0) {
@@ -143,6 +145,8 @@ let showContent = (objectData) => {
     showTasksDiv.style.alignItems = "center";
     showTasksDiv.style.fontSize = "40px";
   }
+  
+  
 };
 
 
@@ -171,9 +175,31 @@ editInput.addEventListener('input', (o)=>{
 })
 }
 
+let openSearch = ()=>{
+  searchbtn.addEventListener('click', ()=>{
+  searchModal.showModal()
 
+  })
+}
 
+openSearch()
 
+let searchThis = (tasks, div, search)=>{
+searchForm.addEventListener('submit', (o)=> {
+o.preventDefault()
+for (let index = 0; index < tasks.length; index++) {
+  let revisaTasks = tasks[index];
+  if (revisaTasks.innerHTML != searchInput.value && div.id == revisaTasks.innerHTML) {
+    div.style.display = 'none'
+   
+    console.log(true);
+    search.close()
+  }
+  
+}
+})
+
+}
 
 
 

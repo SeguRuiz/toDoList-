@@ -25,7 +25,10 @@
         placeholder="Agrega tus tareas"
       />
       <input type="submit" id="submit" value="+" />
+      
       <div id="countdown">Tareas completadas: 0</div>
+      <div class="searchActive"></div>
+      
     </form>
 
     <div class="tareas">
@@ -36,11 +39,19 @@
 
     <dialog id="editTask">
       <form action="" class="editForm" >
-        <input type="text" id="edited" />
+        <input type="text" id="edited" placeholder="Edita tu tarea"/>
         <input type="submit" value="+" id="editBtn"/>
       </form>
     </dialog>
 
+     <dialog id="editSearch">
+      <form action="" class="editSearch" id="searchForm" >
+        <input type="text" id="Search" placeholder="Buscar..."/>
+        <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass fa-sm" style="color: #ffffff;"></i></button>
+      </form>
+    </dialog>
+   
+     
     <script src="/src/js/index.js" type="module"></script>
   </body>
 </html>
