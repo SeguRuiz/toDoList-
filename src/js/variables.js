@@ -22,6 +22,7 @@ let searchInput = document.getElementById('Search')
 let searchForm = document.getElementById('searchForm')
 ///////
 let tareas = []
+let estadoFilter = true;
 
 export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2, modal, formEdit
-, editInput, searchModal, searchbtn, tareas, searchInput, searchForm };
+, editInput, searchModal, searchbtn, tareas, searchInput, searchForm,estadoFilter };

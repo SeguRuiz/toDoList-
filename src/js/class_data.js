@@ -9,6 +9,7 @@ class dataPost {
     this.body = JSON.stringify({
       task,
       status: "show",
+      filtered: 'no'
     });
   }
 }
@@ -49,4 +50,17 @@ class dataChange {
     });
   }
 }
-export { dataPost, DataPut, DataCheck, dataChange };
+
+class dataFilter {
+  method = "put";
+  headers = {
+    "Content-Type": "application/json",
+  };
+  body = "";
+  constructor(filtered) {
+    this.body = JSON.stringify({
+      filtered,
+    });
+  }
+}
+export { dataPost, DataPut, DataCheck, dataChange, dataFilter };
