@@ -27,7 +27,7 @@
   font-size: 20px;
   background-color: rgb(0, 110, 255);
   padding: 10px;
-  margin-left: 165px;
+  margin-left: 105px;
   border-radius: 5px;
 }
 
@@ -62,7 +62,6 @@
 }
 
 .taskDivs {
- 
   display: flex;
   justify-content: start;
   align-items: center;
@@ -111,9 +110,107 @@
   transition: 0.5s;
 }
 
-.editTask{
-  background-color: #ff4d6d;
-  width: 30px;
+.editTask {
   height: 30px;
   margin-left: 5px;
+}
+
+.editForm {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+}
+#edited {
+  border: solid 2px rgb(0, 110, 255);
+  width: 250px;
+  height: 45px;
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(0, 110, 255);
+}
+#edited:focus {
+  outline: none;
+}
+#edited::placeholder {
+  color: white;
+}
+
+#editBtn {
+  font-size: 30px;
+  background-color: rgb(0, 110, 255);
+  border: solid 2px rgb(0, 110, 255);
+  color: white;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#editTask {
+  padding: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  bottom: 565px;
+  right: 425px;
+}
+
+/*search*/
+
+.searchActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  background-color: rgb(0, 110, 255);
+  border: solid 2px rgb(0, 110, 255);
+  color: white;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#editSearch {
+  padding: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  bottom: 565px;
+  right: 425px;
+}
+
+.editSearch{
+  display: flex;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+}
+
+#Search {
+  border: solid 2px rgb(0, 110, 255);
+  width: 250px;
+  height: 45px;
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(0, 110, 255);
+}
+#Search:focus {
+  outline: none;
+}
+#Search::placeholder {
+  color: white;
+}
+
+#searchBtn {
+  font-size: 30px;
+  background-color: rgb(0, 110, 255);
+  border: solid 2px rgb(0, 110, 255);
+  color: white;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
