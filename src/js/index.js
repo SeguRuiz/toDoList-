@@ -250,10 +250,6 @@ let testSearch = (data, div) => {
         div.id == element.innerHTML
       ) {
         div.style.display = "none";
-        //  estadoFilter = true;
-        //   div.style.display = "none";
-        //   let filtered = new dataFilter("yes");
-        //   putRequest(element.id, filtered);
       }
 
       if (characters == "" && div.id == element.innerHTML) {
