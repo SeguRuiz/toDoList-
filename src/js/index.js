@@ -28,6 +28,7 @@ import {
   openCategory,
   categoryStorage,
   selectors,
+  tagsContainer
 } from "../js/variables";
 //fetch request
 let linkData = "http://localhost:3000/api/task/";
@@ -316,14 +317,6 @@ let categoryOpen = () => {
 };
 categoryOpen();
 
-let showCategorys = () => {
-  categoryStorage.forEach((cate) => {
-    let categorias = document.createElement("option");
-    categorias.value = cate;
-    categorias.innerHTML = cate;
-    option.appendChild(categorias);
-  });
-};
 
 
 
@@ -336,14 +329,16 @@ let sle = (select, data) => {
       categorias.value = cate;
       categorias.innerHTML = cate;
       categorias.id == selector.id;
-
       li.push(categorias);
       selector.appendChild(categorias);
     });
     selector.addEventListener("change", () => {
       let categoryChange = new dataCategory(selector.value);
       putRequest(selector.id, categoryChange);
+      window.location.reload()
     });
+    
+    
   });
 
   li.forEach((e) => {
@@ -358,4 +353,28 @@ let sle = (select, data) => {
       }
     });
   });
+
+  categoryStorage.forEach(tag =>{
+  let tagDiv = document.createElement('div')
+  let tagEliminate = document.createElement('div')
+  tagEliminate.innerHTML = 'eliminar'
+  let tagText = document.createElement('p')
+  tagDiv.classList.add('tagDiv')
+  tagEliminate.classList.add('tagEliminate')
+  tagText.classList.add('tagText')
+  tagText.innerHTML = tag
+  tagEliminate.id = tag
+  tagDiv.appendChild(tagText)
+  tagDiv.appendChild(tagEliminate)
+  tagsContainer.appendChild(tagDiv)
+  tagEliminate.addEventListener('click', ()=>{
+  let filtrador = categoryStorage.filter(category => category != tagEliminate.id )
+  localStorage.removeItem('categorys')
+  localStorage.setItem('categorys', JSON.stringify(filtrador))
+  window.location.reload()
+  })
+  })
 };
+
+
+export{putRequest ,request,requestPost}

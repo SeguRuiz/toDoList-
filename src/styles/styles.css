@@ -10,6 +10,22 @@
   border-radius: 5px;
 }
 
+
+#categoryTags{
+background-color: antiquewhite;
+margin-top: 60px;
+}
+
+.tagDiv{
+display: flex;
+justify-content: center;
+justify-content: space-between;
+background-color: #ff4d6d;
+}
+
+.tagEliminate{
+  background-color: aqua;
+}
 #taskForm {
   display: flex;
   justify-content: center;
@@ -27,7 +43,7 @@
   font-size: 20px;
   background-color: rgb(0, 110, 255);
   padding: 10px;
-  margin-left: 105px;
+  margin-left: 2px;
   border-radius: 5px;
 }
 
@@ -58,7 +74,7 @@
 }
 .tareas {
   display: grid;
-  grid-template-columns: auto 60% auto;
+  grid-template-columns: 65% auto ;
 }
 
 .taskDivs {
@@ -214,3 +230,18 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+
+/*categorys containers*/
+
+
+
+
+
+
+
+
+
+
+
+

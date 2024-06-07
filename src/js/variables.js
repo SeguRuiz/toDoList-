@@ -34,7 +34,9 @@ let openCategory = document.getElementById('openCategorys')
 
 //
 let categoryStorage = JSON.parse(localStorage.getItem('categorys')) || []
+//
+let tagsContainer = document.getElementById('categoryTags')
 
 export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2, modal, formEdit
 , editInput, searchModal, searchbtn, tareas, searchInput, searchForm,estadoFilter, option, categoryModal, categoryInput
-, categoryForm, categoryStorage, openCategory, selectors};
+, categoryForm, categoryStorage, openCategory, selectors, tagsContainer};
