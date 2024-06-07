@@ -86,9 +86,7 @@ let showContent = (objectData) => {
   objectData.forEach((object) => {
     if (object.filtered == "no") {
       compara++;
-
       let sectionSelect = document.createElement("select");
-      sectionSelect.value = "none";
       let editIcon = document.createElement("div");
       let icon = document.createElement("div");
       let checkBox = document.createElement("div");
@@ -103,7 +101,7 @@ let showContent = (objectData) => {
       editIcon.id = object.id;
       divTask.id = text.innerHTML;
       text.id = object.id;
-
+      sectionSelect.value = "none";
       tareas.push(text);
       selectors.push(sectionSelect);
       divsTasks.push(divTask);
@@ -375,7 +373,7 @@ if (element.category) {
     let tagDiv = document.createElement("div");
     let tagDivText = document.createElement("div");
     let tagEliminate = document.createElement("div");
-    tagEliminate.innerHTML = "eliminar";
+    tagEliminate.innerHTML = '<i class="fa-solid fa-trash fa-lg" style="color: #ffffff;"></i>';
     let tagText = document.createElement("p");
     tagDiv.classList.add("tagDiv");
     tagEliminate.classList.add("tagEliminate");
@@ -422,4 +420,6 @@ let contador = 0
     });
   });
 };
+
+
 

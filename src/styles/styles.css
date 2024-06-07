@@ -1,5 +1,7 @@
 .body {
   font-family: "Poppins", sans-serif;
+  padding-right: 0;
+  margin-right: 0;
 }
 #inProgres {
   margin-top: 60px;
@@ -12,26 +14,56 @@
 
 
 #categoryTags{
-background-color: antiquewhite;
 margin-top: 60px;
-
+margin-left: 10px;
 }
+
+#openCategorys{
+  font-size: 30px;
+  background-color: rgb(0, 110, 255);
+  border: solid 2px rgb(0, 110, 255);
+  color: white;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
 
 .tagDiv{
 display: flex;
 justify-content: space-between;
-background-color: #ff4d6d;
+align-items: center;
+background-color: rgb(0, 110, 255);
 margin-top: 10px;
+
+border-top-left-radius: 50px;
+border-bottom-left-radius: 50px;
+overflow: hidden;
+height: 50px;
 }
 
 .tagDivText{
 width: 100%;
-background-color: lightgray;
+background-color: rgb(0, 110, 255);
+color: white;
+font-size: 15px;
+overflow: auto;
+}
+.tagText{
+margin-left: 15px;
+
+}
+.tagEliminate{
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  height: 20px;
 }
 
-.tagEliminate{
-  background-color: aqua;
-}
+
+
+
 #taskForm {
   display: flex;
   justify-content: center;
@@ -80,7 +112,7 @@ background-color: lightgray;
 }
 .tareas {
   display: grid;
-  grid-template-columns: 65% auto ;
+  grid-template-columns: 80% auto ;
 }
 
 .taskDivs {
@@ -194,7 +226,7 @@ background-color: lightgray;
   padding-right: 10px;
 }
 
-#editSearch {
+#editSearch, #addCategory{
   padding: 0;
   border: none;
   background-color: rgba(0, 0, 0, 0);
@@ -203,7 +235,7 @@ background-color: lightgray;
   right: 425px;
 }
 
-.editSearch{
+.editSearch, #categoryForm{
   display: flex;
   gap: 10px;
   height: 100%;
@@ -211,23 +243,23 @@ background-color: lightgray;
   inset: 0;
 }
 
-#Search {
+#Search , #categoryInpt{
   border: solid 2px rgb(0, 110, 255);
-  width: 250px;
+  width: 255px;
   height: 45px;
   border-radius: 5px;
   font-size: 20px;
   color: white;
   background-color: rgb(0, 110, 255);
 }
-#Search:focus {
+#Search, #categoryInpt:focus {
   outline: none;
 }
-#Search::placeholder {
+#Search,  #categoryInpt::placeholder {
   color: white;
 }
 
-#searchBtn {
+#searchBtn, #categoryBtn {
   font-size: 30px;
   background-color: rgb(0, 110, 255);
   border: solid 2px rgb(0, 110, 255);
