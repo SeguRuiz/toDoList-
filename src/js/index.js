@@ -5,6 +5,7 @@ import {
   DataCheck,
   dataChange,
   dataFilter,
+  dataCategory,
 } from "../js/class_data";
 import {
   formTask,
@@ -20,6 +21,13 @@ import {
   searchInput,
   searchForm,
   estadoFilter,
+  option,
+  categoryForm,
+  categoryInput,
+  categoryModal,
+  openCategory,
+  categoryStorage,
+  selectors,
 } from "../js/variables";
 //fetch request
 let linkData = "http://localhost:3000/api/task/";
@@ -71,11 +79,13 @@ formTask.addEventListener("submit", (m) => {
 let showContent = (objectData) => {
   let contador = 0;
   let compara = 0;
-
+  chamgeFilterIcon();
   openSearch(objectData);
   objectData.forEach((object) => {
     if (object.filtered == "no") {
       compara++;
+      let sectionSelect = document.createElement("select");
+
       let editIcon = document.createElement("div");
       let icon = document.createElement("div");
       let checkBox = document.createElement("div");
@@ -84,12 +94,15 @@ let showContent = (objectData) => {
       let divBtn = document.createElement("div");
       let divTask = document.createElement("div");
       text.innerHTML = object.task;
+      sectionSelect.id = object.id;
       divBtn.id = object.id;
       checkBox.id = object.id;
       editIcon.id = object.id;
       divTask.id = text.innerHTML;
       text.id = object.id;
+
       tareas.push(text);
+      selectors.push(sectionSelect);
       if (object.status == "checked") {
         contador++;
         countShow.innerHTML = "Tareas completadas: " + contador;
@@ -99,7 +112,9 @@ let showContent = (objectData) => {
         checkBox.style.border = "none";
         divTask.style.opacity = "0.3";
       }
+
       div.appendChild(checkBox);
+      div.appendChild(sectionSelect);
       div.appendChild(text);
       div.appendChild(editIcon);
       divBtn.appendChild(icon);
@@ -159,6 +174,7 @@ let showContent = (objectData) => {
 
       searchThis(tareas, divTask, searchModal);
       testSearch(tareas, divTask);
+
       //text event
     }
   });
@@ -170,6 +186,7 @@ let showContent = (objectData) => {
     showTasksDiv.style.alignItems = "center";
     showTasksDiv.style.fontSize = "40px";
   }
+  sle(selectors, objectData);
 };
 
 ///////////////////////////////////////////////////////////
@@ -204,6 +221,7 @@ let openSearch = (objectData) => {
       if (tasks.filtered == "yes") {
         let rewind = new dataFilter("no");
         putRequest(tasks.id, rewind);
+        localStorage.setItem("filterStatus", "no");
         window.location.reload();
       } else {
         searchModal.showModal();
@@ -231,6 +249,8 @@ let searchThis = (tasks, div, searchModal, object) => {
           div.style.display = "none";
           let filtered = new dataFilter("yes");
           putRequest(element.id, filtered);
+          localStorage.setItem("filterStatus", "yes");
+
           window.location.reload();
         }
       });
@@ -254,6 +274,87 @@ let testSearch = (data, div) => {
 
       if (characters == "" && div.id == element.innerHTML) {
         div.style.display = "flex";
+      }
+    });
+  });
+};
+
+let chamgeFilterIcon = () => {
+  if (localStorage.getItem("filterStatus") == "yes") {
+    searchbtn.innerHTML =
+      '<i class="fa-solid fa-filter-circle-xmark fa-sm" style="color: #ffffff;"></i>';
+  }
+};
+
+let testO = () => {
+  option.addEventListener("change", () => {
+    if (option.value == "hola2") {
+      console.log("zapata");
+    }
+    if (option.value == "hola") {
+      console.log("kaka");
+    }
+  });
+};
+
+let categoryOpen = () => {
+  openCategory.addEventListener("click", () => {
+    categoryModal.showModal();
+  });
+
+  categoryForm.addEventListener("submit", (x) => {
+    x.preventDefault();
+    let value = categoryInput.value;
+    let valueFiltered = value.trim();
+    if (valueFiltered != "") {
+      categoryStorage.push(valueFiltered);
+      localStorage.setItem("categorys", JSON.stringify(categoryStorage));
+
+      window.location.reload();
+    }
+  });
+};
+categoryOpen();
+
+let showCategorys = () => {
+  categoryStorage.forEach((cate) => {
+    let categorias = document.createElement("option");
+    categorias.value = cate;
+    categorias.innerHTML = cate;
+    option.appendChild(categorias);
+  });
+};
+
+
+
+let sle = (select, data) => {
+  let li = [];
+  select.forEach((selector) => {
+    categoryStorage.forEach((cate) => {
+      let categorias = document.createElement("option");
+      categorias.id = selector.id;
+      categorias.value = cate;
+      categorias.innerHTML = cate;
+      categorias.id == selector.id;
+
+      li.push(categorias);
+      selector.appendChild(categorias);
+    });
+    selector.addEventListener("change", () => {
+      let categoryChange = new dataCategory(selector.value);
+      putRequest(selector.id, categoryChange);
+    });
+  });
+
+  li.forEach((e) => {
+    data.forEach((x) => {
+      if (e.value == x.category && e.id == x.id) {
+        console.log(true);
+        console.log(e);
+        //se encarga que el valor del 
+        e.selected = true
+      }else{
+      console.log(false);
       }
     });
   });

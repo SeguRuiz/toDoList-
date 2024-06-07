@@ -22,7 +22,19 @@ let searchInput = document.getElementById('Search')
 let searchForm = document.getElementById('searchForm')
 ///////
 let tareas = []
+let selectors = []
 let estadoFilter = true;
+let option = document.getElementById('option')
+//categorias 
+//let categoryBtn = document.getElementById('')
+let categoryModal = document.getElementById('addCategory')
+let categoryInput = document.getElementById('categoryInpt')
+let categoryForm = document.getElementById('categoryForm')
+let openCategory = document.getElementById('openCategorys')
+
+//
+let categoryStorage = JSON.parse(localStorage.getItem('categorys')) || []
 
 export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2, modal, formEdit
-, editInput, searchModal, searchbtn, tareas, searchInput, searchForm,estadoFilter };
+, editInput, searchModal, searchbtn, tareas, searchInput, searchForm,estadoFilter, option, categoryModal, categoryInput
+, categoryForm, categoryStorage, openCategory, selectors};
