@@ -14,13 +14,19 @@
 #categoryTags{
 background-color: antiquewhite;
 margin-top: 60px;
+
 }
 
 .tagDiv{
 display: flex;
-justify-content: center;
 justify-content: space-between;
 background-color: #ff4d6d;
+margin-top: 10px;
+}
+
+.tagDivText{
+width: 100%;
+background-color: lightgray;
 }
 
 .tagEliminate{

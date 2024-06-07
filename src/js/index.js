@@ -28,7 +28,8 @@ import {
   openCategory,
   categoryStorage,
   selectors,
-  tagsContainer
+  tagsContainer,
+  divsTasks,
 } from "../js/variables";
 //fetch request
 let linkData = "http://localhost:3000/api/task/";
@@ -85,8 +86,9 @@ let showContent = (objectData) => {
   objectData.forEach((object) => {
     if (object.filtered == "no") {
       compara++;
-      let sectionSelect = document.createElement("select");
 
+      let sectionSelect = document.createElement("select");
+      sectionSelect.value = "none";
       let editIcon = document.createElement("div");
       let icon = document.createElement("div");
       let checkBox = document.createElement("div");
@@ -104,6 +106,7 @@ let showContent = (objectData) => {
 
       tareas.push(text);
       selectors.push(sectionSelect);
+      divsTasks.push(divTask);
       if (object.status == "checked") {
         contador++;
         countShow.innerHTML = "Tareas completadas: " + contador;
@@ -131,6 +134,7 @@ let showContent = (objectData) => {
       editIcon.classList.add("editTask");
       divTask.appendChild(div);
       divTask.appendChild(divBtn);
+
       document.getElementById("inProgres").appendChild(divTask);
 
       /////////////////////////
@@ -187,7 +191,7 @@ let showContent = (objectData) => {
     showTasksDiv.style.alignItems = "center";
     showTasksDiv.style.fontSize = "40px";
   }
-  sle(selectors, objectData);
+  sle(selectors, objectData, divsTasks);
 };
 
 ///////////////////////////////////////////////////////////
@@ -223,6 +227,7 @@ let openSearch = (objectData) => {
         let rewind = new dataFilter("no");
         putRequest(tasks.id, rewind);
         localStorage.setItem("filterStatus", "no");
+        localStorage.setItem('categoryInAction', 'none')
         window.location.reload();
       } else {
         searchModal.showModal();
@@ -251,6 +256,7 @@ let searchThis = (tasks, div, searchModal, object) => {
           let filtered = new dataFilter("yes");
           putRequest(element.id, filtered);
           localStorage.setItem("filterStatus", "yes");
+          
 
           window.location.reload();
         }
@@ -317,64 +323,103 @@ let categoryOpen = () => {
 };
 categoryOpen();
 
-
-
-
-let sle = (select, data) => {
+let sle = (select, data, divsTask) => {
   let li = [];
   select.forEach((selector) => {
+  let defecto = document.createElement('option')
+  defecto.value = 'none'
+  defecto.innerHTML = 'none'
+  selector.appendChild(defecto)
     categoryStorage.forEach((cate) => {
       let categorias = document.createElement("option");
+      
+      defecto.value = 'none'
+      defecto.innerHTML = 'none'
       categorias.id = selector.id;
       categorias.value = cate;
       categorias.innerHTML = cate;
       categorias.id == selector.id;
       li.push(categorias);
+      
       selector.appendChild(categorias);
     });
+   
     selector.addEventListener("change", () => {
       let categoryChange = new dataCategory(selector.value);
       putRequest(selector.id, categoryChange);
-      window.location.reload()
+      window.location.reload();
     });
-    
+
     
   });
+data.forEach(element =>{
+if (element.category) {
+  
+}
+})
 
   li.forEach((e) => {
     data.forEach((x) => {
       if (e.value == x.category && e.id == x.id) {
         console.log(true);
         console.log(e);
-        //se encarga que el valor del 
-        e.selected = true
-      }else{
-      console.log(false);
+        //se encarga que el valor del
+        e.selected = true;
+      } else {
+        console.log(false);
       }
     });
   });
 
-  categoryStorage.forEach(tag =>{
-  let tagDiv = document.createElement('div')
-  let tagEliminate = document.createElement('div')
-  tagEliminate.innerHTML = 'eliminar'
-  let tagText = document.createElement('p')
-  tagDiv.classList.add('tagDiv')
-  tagEliminate.classList.add('tagEliminate')
-  tagText.classList.add('tagText')
-  tagText.innerHTML = tag
-  tagEliminate.id = tag
-  tagDiv.appendChild(tagText)
-  tagDiv.appendChild(tagEliminate)
-  tagsContainer.appendChild(tagDiv)
-  tagEliminate.addEventListener('click', ()=>{
-  let filtrador = categoryStorage.filter(category => category != tagEliminate.id )
-  localStorage.removeItem('categorys')
-  localStorage.setItem('categorys', JSON.stringify(filtrador))
-  window.location.reload()
-  })
-  })
+  categoryStorage.forEach((tag) => {
+    let tagDiv = document.createElement("div");
+    let tagDivText = document.createElement("div");
+    let tagEliminate = document.createElement("div");
+    tagEliminate.innerHTML = "eliminar";
+    let tagText = document.createElement("p");
+    tagDiv.classList.add("tagDiv");
+    tagEliminate.classList.add("tagEliminate");
+    tagText.classList.add("tagText");
+    tagDivText.classList.add("tagDivText");
+    tagText.innerHTML = tag;
+    tagEliminate.id = tag;
+    tagDivText.id = tag;
+    tagDivText.appendChild(tagText);
+    tagDiv.appendChild(tagDivText);
+    tagDiv.appendChild(tagEliminate);
+    tagsContainer.appendChild(tagDiv);
+    ///////////////////////////////////
+    tagEliminate.addEventListener("click", () => {
+      let filtrador = categoryStorage.filter(
+        (category) => category != tagEliminate.id
+      );
+      localStorage.removeItem("categorys");
+      localStorage.setItem("categorys", JSON.stringify(filtrador));
+      window.location.reload();
+    });
+    /////////////////////
+    tagDivText.addEventListener("click", () => {
+      categoryFilters(data, tagDivText.id, divsTask);
+    });
+  });
 };
 
+export { putRequest, request, requestPost };
 
-export{putRequest ,request,requestPost}
+let categoryFilters = (data, tagCategory, divTask) => {
+let contador = 0
+  data.forEach((category) => {
+    divTask.forEach((divTask) => {
+      if (category.category != tagCategory && category.task == divTask.id) {
+        console.log(contador);
+        divTask.style.display = "none";
+          let filtered = new dataFilter("yes");
+          putRequest(category.id, filtered);
+          localStorage.setItem("filterStatus", "yes");
+          localStorage.setItem('categoryInAction', tagCategory)
+          window.location.reload()
+      }
+    });
+  });
+};
+

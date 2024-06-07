@@ -23,6 +23,7 @@ let searchForm = document.getElementById('searchForm')
 ///////
 let tareas = []
 let selectors = []
+let divsTasks = []
 let estadoFilter = true;
 let option = document.getElementById('option')
 //categorias 
@@ -39,4 +40,4 @@ let tagsContainer = document.getElementById('categoryTags')
 
 export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2, modal, formEdit
 , editInput, searchModal, searchbtn, tareas, searchInput, searchForm,estadoFilter, option, categoryModal, categoryInput
-, categoryForm, categoryStorage, openCategory, selectors, tagsContainer};
+, categoryForm, categoryStorage, openCategory, selectors, tagsContainer, divsTasks};
