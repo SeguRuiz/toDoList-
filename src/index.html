@@ -25,33 +25,55 @@
         placeholder="Agrega tus tareas"
       />
       <input type="submit" id="submit" value="+" />
-      
+
+      <button id="openCategorys">
+        <i class="fa-solid fa-layer-group fa-lg" style="color: #ffffff"></i>
+      </button>
       <div id="countdown">Tareas completadas: 0</div>
-      <div class="searchActive"><i class="fa-solid fa-filter fa-sm" style="color: #ffffff;"></i></div>
-      
+      <div class="searchActive">
+        <i class="fa-solid fa-filter fa-sm" style="color: #ffffff"></i>
+      </div>
     </form>
 
     <div class="tareas">
-      <div id="relleno"></div>
       <div id="inProgres"></div>
-      <div id="relleno"></div>
+      <div id="categoryTags"></div>
     </div>
 
     <dialog id="editTask">
-      <form action="" class="editForm" >
-        <input type="text" id="edited" placeholder="Edita tu tarea"/>
-        <button type="submit" id="editBtn"><i class="fa-solid fa-pen fa-sm" style="color: #ffffff;"></i></button>
+      <form action="" class="editForm">
+        <input type="text" id="edited" placeholder="Edita tu tarea" />
+        <button type="submit" id="editBtn">
+          <i class="fa-solid fa-pen fa-sm" style="color: #ffffff"></i>
+        </button>
       </form>
     </dialog>
 
-     <dialog id="editSearch">
-      <form action="" class="editSearch" id="searchForm" >
-        <input type="text" id="Search" placeholder="Buscar..."/>
-        <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass fa-sm" style="color: #ffffff;"></i></button>
+    <dialog id="editSearch">
+      <form action="" class="editSearch" id="searchForm">
+        <input type="text" id="Search" placeholder="Buscar..." />
+        <button type="submit" id="searchBtn">
+          <i
+            class="fa-solid fa-magnifying-glass fa-sm"
+            style="color: #ffffff"
+          ></i>
+        </button>
       </form>
     </dialog>
-   
-     
+
+    <dialog id="addCategory">
+      <form action="" id="categoryForm">
+        <input
+          type="text"
+          id="categoryInpt"
+          placeholder="Nombra tu categoria"
+        />
+        <button type="submit" id="categoryBtn">
+          <i class="fa-solid fa-square-plus fa-lg"></i>
+        </button>
+      </form>
+    </dialog>
+
     <script src="/src/js/index.js" type="module"></script>
   </body>
 </html>

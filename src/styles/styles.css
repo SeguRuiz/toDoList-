@@ -1,5 +1,7 @@
 .body {
   font-family: "Poppins", sans-serif;
+  padding-right: 0;
+  margin-right: 0;
 }
 #inProgres {
   margin-top: 60px;
@@ -9,6 +11,62 @@
   overflow: auto;
   border-radius: 5px;
 }
+
+#categoryTags{
+margin-top: 60px;
+margin-left: 10px;
+}
+
+#openCategorys{
+  font-size: 30px;
+  background-color: rgb(0, 110, 255);
+  border: solid 2px rgb(0, 110, 255);
+  color: white;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.select{
+max-width: 60px;
+max-height: 60px;
+overflow: auto;
+}
+
+.tagDiv{
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: rgb(0, 110, 255);
+margin-top: 10px;
+border-top-left-radius: 50px;
+border-bottom-left-radius: 50px;
+overflow: hidden;
+height: 50px;
+max-width: 245px;
+}
+
+.tagDivText{
+width: 100%;
+margin-right: 10px;
+background-color: rgb(0, 110, 255);
+color: white;
+font-size: 15px;
+overflow: auto;
+}
+.tagText{
+margin-left: 15px;
+
+}
+.tagEliminate{
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  height: 20px;
+}
+
+
+
 
 #taskForm {
   display: flex;
@@ -27,7 +85,7 @@
   font-size: 20px;
   background-color: rgb(0, 110, 255);
   padding: 10px;
-  margin-left: 105px;
+  margin-left: 2px;
   border-radius: 5px;
 }
 
@@ -58,7 +116,7 @@
 }
 .tareas {
   display: grid;
-  grid-template-columns: auto 60% auto;
+  grid-template-columns: 80% auto ;
 }
 
 .taskDivs {
@@ -172,7 +230,7 @@
   padding-right: 10px;
 }
 
-#editSearch {
+#editSearch, #addCategory{
   padding: 0;
   border: none;
   background-color: rgba(0, 0, 0, 0);
@@ -181,7 +239,7 @@
   right: 425px;
 }
 
-.editSearch{
+.editSearch, #categoryForm{
   display: flex;
   gap: 10px;
   height: 100%;
@@ -189,23 +247,27 @@
   inset: 0;
 }
 
-#Search {
+#Search , #categoryInpt{
   border: solid 2px rgb(0, 110, 255);
-  width: 250px;
+  width: 255px;
   height: 45px;
   border-radius: 5px;
   font-size: 20px;
   color: white;
   background-color: rgb(0, 110, 255);
 }
-#Search:focus {
+#Search, #categoryInpt:focus {
   outline: none;
 }
-#Search::placeholder {
+ #categoryInpt::placeholder {
   color: white;
 }
 
-#searchBtn {
+#Search::placeholder{
+color: white;
+}
+
+#searchBtn, #categoryBtn {
   font-size: 30px;
   background-color: rgb(0, 110, 255);
   border: solid 2px rgb(0, 110, 255);
@@ -214,3 +276,18 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+
+/*categorys containers*/
+
+
+
+
+
+
+
+
+
+
+
+
