@@ -1,4 +1,5 @@
 //Imports
+import { request, putRequest, requestPost } from "../js/requests";
 import {
   dataPost,
   DataPut,
@@ -30,39 +31,14 @@ import {
   selectors,
   tagsContainer,
   divsTasks,
-} from "../js/variables";
+  linkData,
+} from "./variables_Global";
 //fetch request
-let linkData = "http://localhost:3000/api/task/";
 // post
-let requestPost = async (dataObject) => {
-  try {
-    let response = await fetch(linkData, dataObject);
-    let data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-let request = async () => {
-  try {
-    let response = await fetch(linkData);
-    let data = await response.json();
-    console.log(data);
-    showContent(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 //Cargar contenido
 request();
-let putRequest = async (thisId, deleteThis) => {
-  try {
-    let response = await fetch(linkData + thisId, deleteThis);
-    let data = await response.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 //hace post a la base de datos con el valor del input, {task: inputTask.value}
 formTask.addEventListener("submit", (m) => {
   m.preventDefault();
@@ -102,9 +78,7 @@ let showContent = (objectData) => {
       divTask.id = text.innerHTML;
       text.id = object.id;
       sectionSelect.value = "none";
-      tareas.push(text);
-      selectors.push(sectionSelect);
-      divsTasks.push(divTask);
+      sectionSelect.classList.add("select");
       if (object.status == "checked") {
         contador++;
         countShow.innerHTML = "Tareas completadas: " + contador;
@@ -114,7 +88,9 @@ let showContent = (objectData) => {
         checkBox.style.border = "none";
         divTask.style.opacity = "0.3";
       }
-
+      tareas.push(text);
+      selectors.push(sectionSelect);
+      divsTasks.push(divTask);
       div.appendChild(checkBox);
       div.appendChild(sectionSelect);
       div.appendChild(text);
@@ -225,7 +201,7 @@ let openSearch = (objectData) => {
         let rewind = new dataFilter("no");
         putRequest(tasks.id, rewind);
         localStorage.setItem("filterStatus", "no");
-        localStorage.setItem('categoryInAction', 'none')
+        localStorage.setItem("categoryInAction", "none");
         window.location.reload();
       } else {
         searchModal.showModal();
@@ -254,7 +230,6 @@ let searchThis = (tasks, div, searchModal, object) => {
           let filtered = new dataFilter("yes");
           putRequest(element.id, filtered);
           localStorage.setItem("filterStatus", "yes");
-          
 
           window.location.reload();
         }
@@ -291,17 +266,6 @@ let chamgeFilterIcon = () => {
   }
 };
 
-let testO = () => {
-  option.addEventListener("change", () => {
-    if (option.value == "hola2") {
-      console.log("zapata");
-    }
-    if (option.value == "hola") {
-      console.log("kaka");
-    }
-  });
-};
-
 let categoryOpen = () => {
   openCategory.addEventListener("click", () => {
     categoryModal.showModal();
@@ -324,37 +288,30 @@ categoryOpen();
 let sle = (select, data, divsTask) => {
   let li = [];
   select.forEach((selector) => {
-  let defecto = document.createElement('option')
-  defecto.value = 'none'
-  defecto.innerHTML = 'none'
-  selector.appendChild(defecto)
+    let defecto = document.createElement("option");
+    defecto.value = "none";
+    defecto.innerHTML = "none";
+    selector.appendChild(defecto);
     categoryStorage.forEach((cate) => {
       let categorias = document.createElement("option");
-      
-      defecto.value = 'none'
-      defecto.innerHTML = 'none'
+
+      defecto.value = "none";
+      defecto.innerHTML = "none";
       categorias.id = selector.id;
       categorias.value = cate;
       categorias.innerHTML = cate;
       categorias.id == selector.id;
       li.push(categorias);
-      
+
       selector.appendChild(categorias);
     });
-   
+
     selector.addEventListener("change", () => {
       let categoryChange = new dataCategory(selector.value);
       putRequest(selector.id, categoryChange);
       window.location.reload();
     });
-
-    
   });
-data.forEach(element =>{
-if (element.category) {
-  
-}
-})
 
   li.forEach((e) => {
     data.forEach((x) => {
@@ -373,7 +330,8 @@ if (element.category) {
     let tagDiv = document.createElement("div");
     let tagDivText = document.createElement("div");
     let tagEliminate = document.createElement("div");
-    tagEliminate.innerHTML = '<i class="fa-solid fa-trash fa-lg" style="color: #ffffff;"></i>';
+    tagEliminate.innerHTML =
+      '<i class="fa-solid fa-trash fa-lg" style="color: #ffffff;"></i>';
     let tagText = document.createElement("p");
     tagDiv.classList.add("tagDiv");
     tagEliminate.classList.add("tagEliminate");
@@ -402,24 +360,21 @@ if (element.category) {
   });
 };
 
-export { putRequest, request, requestPost };
-
 let categoryFilters = (data, tagCategory, divTask) => {
-let contador = 0
+  let contador = 0;
   data.forEach((category) => {
     divTask.forEach((divTask) => {
       if (category.category != tagCategory && category.task == divTask.id) {
         console.log(contador);
         divTask.style.display = "none";
-          let filtered = new dataFilter("yes");
-          putRequest(category.id, filtered);
-          localStorage.setItem("filterStatus", "yes");
-          localStorage.setItem('categoryInAction', tagCategory)
-          window.location.reload()
+        let filtered = new dataFilter("yes");
+        putRequest(category.id, filtered);
+        localStorage.setItem("filterStatus", "yes");
+        localStorage.setItem("categoryInAction", tagCategory);
+        window.location.reload();
       }
     });
   });
 };
 
-
-
+export { putRequest, request, requestPost, showContent };

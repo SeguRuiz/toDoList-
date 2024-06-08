@@ -9,8 +9,8 @@ class dataPost {
     this.body = JSON.stringify({
       task,
       status: "show",
-      filtered: 'no',
-      category: 'none'
+      filtered: "no",
+      category: "none",
     });
   }
 }

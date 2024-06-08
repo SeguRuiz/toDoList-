@@ -1,4 +1,5 @@
 //forms
+let linkData = "http://localhost:3000/api/task/"
 let formTask = document.getElementById("taskForm");
 let inputTask = document.getElementById("formInput");
 let test = document.getElementById("test");
@@ -40,4 +41,4 @@ let tagsContainer = document.getElementById('categoryTags')
 
 export { formTask, inputTask, test, body , contador, checkboxes, countShow, showTasksDiv, contador2, modal, formEdit
 , editInput, searchModal, searchbtn, tareas, searchInput, searchForm,estadoFilter, option, categoryModal, categoryInput
-, categoryForm, categoryStorage, openCategory, selectors, tagsContainer, divsTasks};
+, categoryForm, categoryStorage, openCategory, selectors, tagsContainer, divsTasks, linkData};

@@ -25,8 +25,10 @@
         placeholder="Agrega tus tareas"
       />
       <input type="submit" id="submit" value="+" />
-     
-      <button id="openCategorys"><i class="fa-solid fa-layer-group fa-lg" style="color: #ffffff;"></i></button>
+
+      <button id="openCategorys">
+        <i class="fa-solid fa-layer-group fa-lg" style="color: #ffffff"></i>
+      </button>
       <div id="countdown">Tareas completadas: 0</div>
       <div class="searchActive">
         <i class="fa-solid fa-filter fa-sm" style="color: #ffffff"></i>
@@ -34,10 +36,8 @@
     </form>
 
     <div class="tareas">
-     
       <div id="inProgres"></div>
-       <div id="categoryTags"></div>
-      
+      <div id="categoryTags"></div>
     </div>
 
     <dialog id="editTask">
@@ -63,13 +63,16 @@
 
     <dialog id="addCategory">
       <form action="" id="categoryForm">
-        <input type="text" id="categoryInpt" placeholder="Nombra tu categoria" />
+        <input
+          type="text"
+          id="categoryInpt"
+          placeholder="Nombra tu categoria"
+        />
         <button type="submit" id="categoryBtn">
           <i class="fa-solid fa-square-plus fa-lg"></i>
         </button>
       </form>
     </dialog>
-
 
     <script src="/src/js/index.js" type="module"></script>
   </body>
