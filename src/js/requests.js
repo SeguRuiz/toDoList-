@@ -1,7 +1,6 @@
 import { linkData } from "./variables_Global";
 import { showContent } from "./index";
 let requestPost = async (dataObject) => {
-
   try {
     let response = await fetch(linkData, dataObject);
     let data = await response.json();
@@ -21,6 +20,7 @@ let request = async () => {
     console.log(error);
   }
 };
+request();
 //Cargar contenido
 let putRequest = async (thisId, deleteThis) => {
   try {

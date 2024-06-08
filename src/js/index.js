@@ -1,5 +1,8 @@
-//Imports
+//submit events functions
+import { addTasks, eliminateBtnFunction, checkboxesClick } from "./tasksFunctions";
+//request functions
 import { request, putRequest, requestPost } from "../js/requests";
+//Classes
 import {
   dataPost,
   DataPut,
@@ -8,6 +11,7 @@ import {
   dataFilter,
   dataCategory,
 } from "../js/class_data";
+//Variables globales
 import {
   formTask,
   inputTask,
@@ -37,27 +41,14 @@ import {
 // post
 
 //Cargar contenido
-request();
-
+//agregar tareas
+addTasks();
 //hace post a la base de datos con el valor del input, {task: inputTask.value}
-formTask.addEventListener("submit", (m) => {
-  m.preventDefault();
-  let espacios = inputTask.value;
-  let filtrado = espacios.trim();
-
-  if (filtrado != "") {
-    let Task = new dataPost("post", filtrado);
-    requestPost(Task);
-    window.location.reload();
-  } else {
-    inputTask.placeholder = "Ingrese el texto";
-  }
-});
 
 let showContent = (objectData) => {
   let contador = 0;
   let compara = 0;
-  chamgeFilterIcon();
+  changeFilterIcon();
   openSearch(objectData);
   objectData.forEach((object) => {
     if (object.filtered == "no") {
@@ -79,15 +70,7 @@ let showContent = (objectData) => {
       text.id = object.id;
       sectionSelect.value = "none";
       sectionSelect.classList.add("select");
-      if (object.status == "checked") {
-        contador++;
-        countShow.innerHTML = "Tareas completadas: " + contador;
-        checkBox.style.backgroundColor = "rgb(0, 110, 255)";
-        checkBox.innerHTML =
-          '<i class="fa-solid fa-check fa-sm" style="color: #ffffff;"></i>';
-        checkBox.style.border = "none";
-        divTask.style.opacity = "0.3";
-      }
+
       tareas.push(text);
       selectors.push(sectionSelect);
       divsTasks.push(divTask);
@@ -108,42 +91,23 @@ let showContent = (objectData) => {
       editIcon.classList.add("editTask");
       divTask.appendChild(div);
       divTask.appendChild(divBtn);
-
       document.getElementById("inProgres").appendChild(divTask);
 
-      /////////////////////////
-      divBtn.addEventListener("click", () => {
-        objectData.forEach((task) => {
-          if (task.id == divBtn.id) {
-            console.log(divBtn.id);
-            let changeStatus = new DataPut("delete");
-            putRequest(divBtn.id, changeStatus);
-            window.location.reload();
-          }
-        });
-      });
-      ////////////////////////////////////
-      checkBox.addEventListener("click", () => {
-        objectData.forEach((task) => {
-          if (task.id == checkBox.id) {
-            if (checkBox.style.backgroundColor != "rgb(0, 110, 255)") {
-              checkBox.style.backgroundColor = "rgb(0, 110, 255)";
-              let checked = new DataCheck("put", "checked");
+      if (object.status == "checked") {
+        contador++;
+        countShow.innerHTML = "Tareas completadas: " + contador;
+        checkBox.style.backgroundColor = "rgb(0, 110, 255)";
+        checkBox.innerHTML =
+          '<i class="fa-solid fa-check fa-sm" style="color: #ffffff;"></i>';
+        checkBox.style.border = "none";
+        divTask.style.opacity = "0.3";
+      }
 
-              putRequest(checkBox.id, checked);
-              window.location.reload();
-            } else {
-              if (checkBox.style.backgroundColor != "white") {
-                checkBox.style.backgroundColor = "white";
-                let unChecked = new DataCheck("put", "unChecked");
-                putRequest(checkBox.id, unChecked);
-                checkBox.innerHTML = "";
-                window.location.reload();
-              }
-            }
-          }
-        });
-      });
+      eliminateBtnFunction(objectData, divBtn);
+      /////////////////////////
+      checkboxesClick(objectData, checkBox)
+      ////////////////////////////////////
+      
       ///////////////////////////////////////////////
       editIcon.addEventListener("click", () => {
         modal.showModal();
@@ -259,7 +223,7 @@ let testSearch = (data, div) => {
   });
 };
 
-let chamgeFilterIcon = () => {
+let changeFilterIcon = () => {
   if (localStorage.getItem("filterStatus") == "yes") {
     searchbtn.innerHTML =
       '<i class="fa-solid fa-filter-circle-xmark fa-sm" style="color: #ffffff;"></i>';
