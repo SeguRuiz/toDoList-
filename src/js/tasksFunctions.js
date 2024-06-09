@@ -1,39 +1,14 @@
 import {
   formTask,
   inputTask,
-  countShow,
-  showTasksDiv,
   modal,
   formEdit,
   editInput,
-  searchModal,
-  searchbtn,
-  tareas,
-  searchInput,
-  searchForm,
-  estadoFilter,
-  option,
-  categoryForm,
-  categoryInput,
-  categoryModal,
-  openCategory,
-  categoryStorage,
-  selectors,
-  tagsContainer,
-  divsTasks,
-  linkData,
 } from "./variables_Global";
 
-import {
-  dataPost,
-  dataDelete,
-  DataCheck,
-  dataChange,
-  dataFilter,
-  dataCategory,
-} from "./class_data";
+import { dataPost, dataDelete, DataCheck, dataChange } from "./class_data";
 
-import { request, putRequest, requestPost } from "./requests";
+import { putRequest, requestPost } from "./requests";
 
 /*Aqui estan cada una de las siquientes funciones:
 1.Agregar tareas (addtask())

@@ -1,13 +1,5 @@
 //Ctegorys functions
-import {
-  addCategorys,
-  eliminateCategory,
-  categoryFilters,
-  showCategorys,
-  maintain_Selected_Tag,
-  category_Tag_Change,
-  tagSelectors,
-} from "../js/extra_categorys";
+import { tagSelectors } from "../js/extra_categorys";
 //search functions
 import {
   openSearch,
@@ -17,24 +9,13 @@ import {
 } from "../js/extra_SearchBar";
 //submit events functions
 import {
-  addTasks,
   eliminateBtnFunction,
   checkboxesClick,
-  editFormFunction,
-  reflectTasks,
   editIconFunctions,
 } from "./tasksFunctions";
 //request functions
 import { request, putRequest, requestPost } from "./requests";
-//Classes
-import {
-  dataPost,
-  DataPut,
-  DataCheck,
-  dataChange,
-  dataFilter,
-  dataCategory,
-} from "./class_data";
+
 //Variables globales
 import {
   countShow,
@@ -54,14 +35,14 @@ de showContent().
 let showContent = (objectData) => {
   let contador = 0;
   let Showing_Tasks = 0;
-//Contadores para verificar si hay tareas disponibles en el servidor
+  //Contadores para verificar si hay tareas disponibles en el servidor
   changeFilterIcon();
-// La funcion changeFilterIcon() esta explicada en extra_SearchBar.js
+  // La funcion changeFilterIcon() esta explicada en extra_SearchBar.js
   openSearch(objectData);
   objectData.forEach((object) => {
     if (object.filtered == "no") {
-//Solo mostrara/creara las tareas si su estado de filtro es no
-//Esto me resulta util para las funciones de search bar y categorias
+      //Solo mostrara/creara las tareas si su estado de filtro es no
+      //Esto me resulta util para las funciones de search bar y categorias
       Showing_Tasks++;
       let sectionSelect = document.createElement("select");
       let editIcon = document.createElement("div");
@@ -76,7 +57,7 @@ let showContent = (objectData) => {
       divBtn.id = object.id;
       checkBox.id = object.id;
       editIcon.id = object.id;
-      divTask.id = object.id;
+      divTask.id = object.task;
       text.id = object.id;
       sectionSelect.value = "none";
       sectionSelect.classList.add("select");
@@ -101,13 +82,13 @@ let showContent = (objectData) => {
       divTask.appendChild(div);
       divTask.appendChild(divBtn);
       document.getElementById("inProgres").appendChild(divTask);
-//Creo etiquetas en div/p/select/ para cada tareas y les agrego clases para cambiar sus estilos
-//Igualo sus ids para tener control a cual tarea pertenece cada etiqueta creada y utilizarlo en demas validaciones
-//que ocupen referirse a una tarea en especifo
+      //Creo etiquetas en div/p/select/ para cada tareas y les agrego clases para cambiar sus estilos
+      //Igualo sus ids para tener control a cual tarea pertenece cada etiqueta creada y utilizarlo en demas validaciones
+      //que ocupen referirse a una tarea en especifo
       if (object.status == "checked") {
-//Valido el status de cada tarea, si el status de esa tarea e checked 
-//Cambiara el estilo de su checkBox y su opacidad
-//Y sumara al contador de checkeds
+        //Valido el status de cada tarea, si el status de esa tarea e checked
+        //Cambiara el estilo de su checkBox y su opacidad
+        //Y sumara al contador de checkeds
         contador++;
         countShow.innerHTML = "Tareas completadas: " + contador;
         checkBox.style.backgroundColor = "rgb(0, 110, 255)";
@@ -118,24 +99,24 @@ let showContent = (objectData) => {
       }
 
       eliminateBtnFunction(objectData, divBtn);
-//eliminateBtnFunction() esta explicada en taskFunctions.js
+      //eliminateBtnFunction() esta explicada en taskFunctions.js
       checkboxesClick(objectData, checkBox);
-//checkboxesClick() esta explicada en taskFunctions.js
+      //checkboxesClick() esta explicada en taskFunctions.js
       editIconFunctions(editIcon, text);
-//editIconFunctions() esta explicada en taskFunctions.js
+      //editIconFunctions() esta explicada en taskFunctions.js
       searchThis(tareas, divTask, searchModal);
-//searchThis() esta explicada en extra_Searchbar.js
+      //searchThis() esta explicada en extra_Searchbar.js
       searchPreview(tareas, divTask);
-//searchPreview() esta explicada en extra_Searchbar.js
+      //searchPreview() esta explicada en extra_Searchbar.js
     }
   });
 
   tagSelectors(selectors, objectData, divsTasks);
-//tagSelectors() esta explicada en extra_Searchbar.js
+  //tagSelectors() esta explicada en extra_Searchbar.js
 
   if (objectData.length === 0 || Showing_Tasks === 0) {
-//Comprueba el largo del array de las tareas en el servidor y si es 0
-//que es el caso en que no hay tareas, mostrara 'No hay tareas'
+    //Comprueba el largo del array de las tareas en el servidor y si es 0
+    //que es el caso en que no hay tareas, mostrara 'No hay ta'
     showTasksDiv.innerHTML = "No hay tareas";
     showTasksDiv.style.display = "flex";
     showTasksDiv.style.justifyContent = "center";
