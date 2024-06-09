@@ -88,8 +88,16 @@ export let checkboxesClick = (data, checkboxes) => {
   });
 };
 
+// EXTRA EDIT FUNCTIONs
 
-// EXTRA EDIT FUNCTIONS
+export let editIconFunctions = (editIcon, text) => {
+  editIcon.addEventListener("click", () => {
+    modal.showModal();
+    editFormFunction(editIcon.id);
+    reflectTasks(text);
+  });
+};
+
 export let editFormFunction = (id) => {
   formEdit.addEventListener("submit", (m) => {
     m.preventDefault();
@@ -107,5 +115,10 @@ export let editFormFunction = (id) => {
   });
 };
 
-
-
+export let reflectTasks = (text) => {
+  editInput.value = text.innerText;
+  editInput.addEventListener("input", (o) => {
+    let s = o.target.value;
+    text.innerText = s;
+  });
+};

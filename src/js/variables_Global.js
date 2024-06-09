@@ -1,5 +1,5 @@
 //forms
-let linkData = "http://localhost:3000/api/task/"
+const linkData = "http://localhost:3000/api/task/"
 let formTask = document.getElementById("taskForm");
 let inputTask = document.getElementById("formInput");
 let test = document.getElementById("test");

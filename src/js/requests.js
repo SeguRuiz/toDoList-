@@ -1,5 +1,5 @@
 import { linkData } from "./variables_Global";
-import { showContent } from "./index";
+import { showContent } from "./principalFunction";
 let requestPost = async (dataObject) => {
   try {
     let response = await fetch(linkData, dataObject);
